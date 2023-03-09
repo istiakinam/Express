@@ -34,4 +34,23 @@ router.post('/', (req, res) => {
     res.json(children);
 });
 
+//update child
+router.put('/:id', (req, res) => {
+    const found = children.some(child => child.id === parseInt(req.params.id));
+    if(found) {
+        const updChild = req.body;
+
+        children.forEach(child => {
+            if(child.id === parseInt(req.params.id)) {
+                child.name = updChild.name ? updChild.name : child.name;
+                child.age = updChild.age ? updChild.age : child.age;
+                
+                res.json({ msg: 'Child updated', child });
+            }
+        })
+    } else {
+        res.status(400).json({ msg: `No child with id of ${req.params.id}` });
+    }
+});
+
 module.exports = router;
