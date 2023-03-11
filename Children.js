@@ -14,7 +14,12 @@ const children = [
     {   id: 3,
         name: 'Yousuf',
         age: 0,
-        height: '_ feet'
+        height: '3 feet'
+    },
+    {   id: 4,
+        name: 'Musa',
+        age: 10,
+        height: '5 feet'
     }
 ];  
 

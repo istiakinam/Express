@@ -32,6 +32,7 @@ router.post('/', (req, res) => {
 
     children.push(newChild);
     res.json(children);
+    //res.redirect('/')
 });
 
 //update child
@@ -53,4 +54,17 @@ router.put('/:id', (req, res) => {
     }
 });
 
+//Delete child
+router.delete('/:id', (req, res) => {
+    const found = children.some(child => child.id === parseInt(req.params.id));
+    if(found) {
+        res.json({ 
+            msg: "Child deleted", 
+            //children: children.splice(children.indexOf())
+            children: children.filter(child => child.id !== parseInt(req.params.id)) 
+        });
+    } else {
+        res.status(400).json({ msg: `No child with id of ${req.params.id}` });
+    }
+});
 module.exports = router;
